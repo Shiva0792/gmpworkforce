@@ -1,0 +1,29 @@
+[
+  {
+    "id": 3,
+    "type": "immediate",
+    "title": "Warehouse Helper / Store Incharge",
+    "location": "Multiple Locations",
+    "employmentType": "Contract",
+    "vacancies": 8,
+    "active": true
+  },
+  {
+    "id": 4,
+    "type": "ongoing",
+    "title": "QA/QC Technician – Pharmaceutical Plant",
+    "location": "Hyderabad, TS",
+    "employmentType": "Long-term Contract",
+    "vacancies": 5,
+    "active": true
+  },
+  {
+    "id": 5,
+    "type": "immediate",
+    "title": "Packing Operator – Blister / Strip Packing",
+    "location": "Hyderabad / Sangareddy",
+    "employmentType": "Full-Time Contract",
+    "vacancies": 15,
+    "active": true
+  }
+]

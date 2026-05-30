@@ -1,0 +1,13 @@
+{
+  "name": "gmp-workforce",
+  "version": "1.0.0",
+  "description": "GMP Workforce Solutions - Dynamic Careers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
