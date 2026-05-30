@@ -96,13 +96,9 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; line-heigh
 }
 .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 24px; }
 .logo { display: flex; align-items: center; gap: 14px; }
-.logo-icon {
-  width: 52px; height: 52px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--blue-accent) 60%, var(--green) 100%);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.logo-icon svg { width: 32px; height: 32px; fill: white; }
-.logo-text { display: flex; flex-direction: column; }
+
+.logo-icon { width: 100px; height: 100px; fill: white; }
+.logo-text { display: flex; flex-direction: row; align-items: baseline; gap: 4px; }
 .logo-name {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 800;
@@ -112,7 +108,7 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; line-heigh
   line-height: 1;
 }
 .logo-name span { color: var(--green); }
-.logo-tagline { font-size: 0.68rem; color: var(--mid-gray); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2px; }
+.logo-tagline { font-size: 0.63rem; color: var(--mid-gray); letter-spacing: 0.12em;  margin-top: 2px; }
 .nav-links { display: flex; align-items: center; gap: 6px; }
 .nav-links a {
   font-family: 'Barlow', sans-serif;
@@ -926,12 +922,15 @@ input[type="file"] { display: none; }
     <nav class="nav">
       <div class="logo" onclick="showPage('home')" style="cursor:pointer">
         <div class="logo-icon">
-          <svg viewBox="0 0 32 32"><path d="M16 2L4 8v8c0 7.4 5.1 14.3 12 16 6.9-1.7 12-8.6 12-16V8L16 2z"/></svg>
+          <img src="images/ologo.jpeg" alt="GMP Logo" >
         </div>
-        <div class="logo-text">
-          <div class="logo-name">GMP <span>Workforce</span></div>
-          <div class="logo-tagline">Solutions</div>
+        <div class="logo-divider">
+            <div class="logo-text">
+              <div class="logo-name">G<span>M</span>P Workforce <span>Solutions</span></div>
+            </div>
+            <div class="logo-tagline">Right People. Right Skills. Right Solutions.</div>
         </div>
+        
       </div>
       <div class="nav-links" id="mainNav">
         <a href="#" class="active" onclick="showPage('home');return false;">Home</a>
