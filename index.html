@@ -687,6 +687,20 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; line-heigh
 .file-upload-label:hover { border-color: var(--navy); color: var(--navy); background: var(--light-gray); }
 .file-upload-label svg { width: 28px; height: 28px; fill: var(--mid-gray); }
 input[type="file"] { display: none; }
+.company-name { font-size: 0.82rem; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.job-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.job-detail-item { }
+.job-detail-item .label { font-size: 0.7rem; color: var(--mid-gray); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; font-family: 'Barlow', sans-serif; }
+.job-detail-item .value { font-size: 0.84rem; color: var(--dark-gray); font-weight: 500; margin-top: 2px; }
+.job-roles { font-size: 0.84rem; color: var(--mid-gray); line-height: 1.6; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.job-roles strong { color: var(--dark-gray); font-family: 'Barlow', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 4px; }
+.job-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+@media (max-width: 768px) {
+  .job-detail-grid { grid-template-columns: 1fr 1fr; }
+  .job-card-right { align-items: stretch; }
+  .job-card-right .btn { width: 100%; justify-content: center; }
+}
+
 .hr-contact-box {
   background: var(--navy);
   color: white;
@@ -850,6 +864,28 @@ input[type="file"] { display: none; }
 .btn-green { background: var(--green); color: white; }
 .btn-green:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,140,47,0.3); }
 
+/* ===== CAROUSEL ===== */
+.carousel { position: relative; overflow: hidden; width: 100%; height: 100%; border-radius: inherit; }
+.carousel-track { display: flex; height: 100%; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+.carousel-slide { min-width: 100%; height: 100%; position: relative; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 5; }
+.carousel-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+.carousel-dots .dot.active { background: white; transform: scale(1.25); }
+.carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,0.35); color: white; border: none; font-size: 1.2rem; cursor: pointer; display: none; align-items: center; justify-content: center; transition: background 0.2s; }
+.carousel-arrow:hover { background: rgba(0,0,0,0.6); }
+.carousel:hover .carousel-arrow { display: flex; }
+.carousel-arrow.prev { left: 12px; }
+.carousel-arrow.next { right: 12px; }
+.carousel-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; color: rgba(255,255,255,0.6); font-size: 0.9rem; text-align: center; padding: 24px; }
+.carousel-placeholder svg { width: 64px; height: 64px; opacity: 0.4; }
+
+/* Roles Toggle */
+.roles-text { display: inline; }
+.roles-text.collapsed::after { content: '...'; }
+.roles-toggle-btn { background: none; border: none; color: var(--green); font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.8rem; cursor: pointer; padding: 0; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; display: inline-block; }
+.roles-toggle-btn:hover { color: var(--navy); }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -979,9 +1015,18 @@ input[type="file"] { display: none; }
         </div>
         <div class="hero-visual">
           <div class="hero-visual-card">
-            <div class="hero-img-placeholder">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M32 8c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8zm-4 34l-8-8 2.8-2.8 5.2 5.2 11.2-11.2L42 28 28 42z"/></svg>
-              <span>Pharma Cleanroom Workforce<br><small style="opacity:0.7">[ High-Quality Image Placeholder ]</small></span>
+            <div class="carousel" id="heroCarousel">
+              <div class="carousel-track" id="heroTrack">
+                <div class="carousel-slide">
+                  <div class="carousel-placeholder" style="background:linear-gradient(135deg,rgba(26,46,90,0.8),rgba(42,82,152,0.6),rgba(58,140,47,0.4))">
+                    <svg viewBox="0 0 64 64" fill="currentColor"><path d="M32 8c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8zm-4 34l-8-8 2.8-2.8 5.2 5.2 11.2-11.2L42 28 28 42z"/></svg>
+                    <span>Pharma Cleanroom Workforce</span>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-arrow prev" onclick="carousels.hero.prev()">‹</button>
+              <button class="carousel-arrow next" onclick="carousels.hero.next()">›</button>
+              <div class="carousel-dots" id="heroDots"></div>
             </div>
           </div>
           <div class="hero-floating-badge">
@@ -1014,9 +1059,18 @@ input[type="file"] { display: none; }
     <div class="container">
       <div class="intro-grid">
         <div class="intro-visual">
-          <div class="intro-img-placeholder">
-            <svg viewBox="0 0 64 64" fill="currentColor"><path d="M32 4C16.5 4 4 16.5 4 32s12.5 28 28 28 28-12.5 28-28S47.5 4 32 4zm0 8c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8zm0 40c-6.7 0-12.6-3.4-16.2-8.5.1-5.4 10.8-8.3 16.2-8.3s16.1 2.9 16.2 8.3C44.6 48.6 38.7 52 32 52z"/></svg>
-            <span style="font-size:0.85rem;color:var(--mid-gray)">[Corporate Team Image]</span>
+          <div class="carousel" id="introCarousel" style="border-radius:var(--radius-lg);min-height:320px">
+            <div class="carousel-track" id="introTrack">
+              <div class="carousel-slide">
+                <div class="carousel-placeholder" style="background:linear-gradient(160deg,var(--light-gray),var(--border));color:var(--mid-gray);min-height:320px">
+                  <svg viewBox="0 0 64 64" fill="currentColor"><path d="M32 4C16.5 4 4 16.5 4 32s12.5 28 28 28 28-12.5 28-28S47.5 4 32 4zm0 8c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8zm0 40c-6.7 0-12.6-3.4-16.2-8.5.1-5.4 10.8-8.3 16.2-8.3s16.1 2.9 16.2 8.3C44.6 48.6 38.7 52 32 52z"/></svg>
+                  <span>Corporate Team</span>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-arrow prev" onclick="carousels.intro.prev()">‹</button>
+            <button class="carousel-arrow next" onclick="carousels.intro.next()">›</button>
+            <div class="carousel-dots" id="introDots"></div>
           </div>
           <div class="intro-accent-box">
             <div class="num">500+</div>
@@ -1308,9 +1362,18 @@ input[type="file"] { display: none; }
           </div>
         </div>
         <div class="intro-visual">
-          <div class="intro-img-placeholder">
-            <svg viewBox="0 0 64 64" fill="currentColor"><path d="M32 4C16.5 4 4 16.5 4 32s12.5 28 28 28 28-12.5 28-28S47.5 4 32 4zm14 38H18V22h28v20z"/></svg>
-            <span style="font-size:0.85rem;color:var(--mid-gray)">[Company Office / Operations Image]</span>
+          <div class="carousel" id="aboutCarousel" style="border-radius:var(--radius-lg);min-height:320px">
+            <div class="carousel-track" id="aboutTrack">
+              <div class="carousel-slide">
+                <div class="carousel-placeholder" style="background:linear-gradient(160deg,var(--light-gray),var(--border));color:var(--mid-gray);min-height:320px">
+                  <svg viewBox="0 0 64 64" fill="currentColor"><path d="M32 4C16.5 4 4 16.5 4 32s12.5 28 28 28 28-12.5 28-28S47.5 4 32 4zm14 38H18V22h28v20z"/></svg>
+                  <span>Company Office</span>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-arrow prev" onclick="carousels.about.prev()">‹</button>
+            <button class="carousel-arrow next" onclick="carousels.about.next()">›</button>
+            <div class="carousel-dots" id="aboutDots"></div>
           </div>
           <div class="intro-accent-box">
             <div class="num">8+</div>
@@ -1798,17 +1861,28 @@ async function loadJobs() {
       const isImmediate = j.type === 'immediate';
       const tagStyle = isImmediate ? '' : ' style="background:#e8f0fe;color:#2a5298"';
       const tagLabel = isImmediate ? '● Immediate Joining' : '● Ongoing';
-      return `<div class="job-card">
+      const hasLongRoles = j.roles && j.roles.length > 100;
+      return `<div class="job-card" data-id="${j.id}">
         <div>
+          <div class="company-name">${escHtml(j.company)}</div>
           <span class="job-type-tag"${tagStyle}>${tagLabel}</span>
-          <h3>${escHtml(j.title)}</h3>
+          <h3 style="margin-top:10px">${escHtml(j.title)}</h3>
           <div class="job-meta">
             <div class="job-meta-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>${escHtml(j.location)}</div>
             <div class="job-meta-item"><svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>${escHtml(j.employmentType)}</div>
             <div class="job-meta-item"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg>${j.vacancies} Vacancies</div>
           </div>
+          ${j.department ? `<div class="job-detail-grid">
+            <div class="job-detail-item"><div class="label">Department</div><div class="value">${escHtml(j.department)}</div></div>
+            <div class="job-detail-item"><div class="label">Qualification</div><div class="value">${escHtml(j.qualification || '-')}</div></div>
+            <div class="job-detail-item"><div class="label">Experience</div><div class="value">${escHtml(j.experience || '-')}</div></div>
+          </div>` : ''}
+          ${j.salaryRange ? `<div class="job-detail-item" style="margin-top:10px"><div class="label">Salary Range</div><div class="value" style="font-weight:700;color:var(--green)">${escHtml(j.salaryRange)}</div></div>` : ''}
+          ${j.roles ? `<div class="job-roles"><strong>Roles & Responsibilities</strong><span class="roles-text${hasLongRoles ? ' collapsed' : ''}" data-full="${escHtml(j.roles)}">${hasLongRoles ? escHtml(j.roles).substring(0, 100) : escHtml(j.roles)}</span>${hasLongRoles ? '<button class="roles-toggle-btn">Read More</button>' : ''}</div>` : ''}
         </div>
-        <button class="btn btn-navy" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now</button>
+        <div class="job-card-right">
+          <button class="btn btn-navy" onclick="document.getElementById('applyForm').scrollIntoView({behavior:'smooth'})">Apply Now →</button>
+        </div>
       </div>`;
     }).join('');
     // Apply scroll-triggered fade-in to dynamic cards
@@ -1822,7 +1896,7 @@ async function loadJobs() {
     const sel = document.getElementById('positionSelect');
     if (sel) {
       sel.innerHTML = '<option value="">Select a position...</option>' +
-        jobs.map(j => `<option>${escHtml(j.title)}</option>`).join('') +
+        jobs.map(j => `<option>${escHtml(j.company)} – ${escHtml(j.title)}</option>`).join('') +
         '<option>Other</option>';
     }
   } catch {
@@ -1850,6 +1924,75 @@ function animateStats() {
   });
 }
 setTimeout(animateStats, 500);
+
+// Roles Read More toggle (event delegation)
+document.getElementById('jobGrid').addEventListener('click', (e) => {
+  if (e.target.classList.contains('roles-toggle-btn')) {
+    const textSpan = e.target.previousElementSibling;
+    const isCollapsed = textSpan.classList.contains('collapsed');
+    if (isCollapsed) {
+      textSpan.textContent = textSpan.dataset.full;
+      textSpan.classList.remove('collapsed');
+      e.target.textContent = 'Show Less';
+    } else {
+      textSpan.textContent = textSpan.dataset.full.substring(0, 100);
+      textSpan.classList.add('collapsed');
+      e.target.textContent = 'Read More';
+    }
+  }
+});
+
+// Carousel system
+class CarouselCtrl {
+  constructor(slot) {
+    this.slot = slot;
+    this.track = document.getElementById(slot + 'Track');
+    this.dotsContainer = document.getElementById(slot + 'Dots');
+    this.current = 0;
+    this.images = [];
+    this.timer = null;
+  }
+  load(images) {
+    this.images = images;
+    if (!images.length) {
+      this.track.innerHTML = this.track.innerHTML; // keep default placeholder slide
+      this.dotsContainer.innerHTML = '';
+      return;
+    }
+    this.track.innerHTML = images.map(img =>
+      `<div class="carousel-slide"><img src="${img.url}" alt="${escHtml(img.name)}" loading="lazy"></div>`
+    ).join('');
+    this.dotsContainer.innerHTML = images.map((_, i) =>
+      `<button class="dot${i === 0 ? ' active' : ''}" onclick="carousels.${this.slot}.goTo(${i})"></button>`
+    ).join('');
+    this.current = 0;
+    this.updateDots();
+    this.start();
+  }
+  goTo(index) {
+    if (!this.images.length) return;
+    this.current = (index + this.images.length) % this.images.length;
+    this.track.style.transform = `translateX(-${this.current * 100}%)`;
+    this.updateDots();
+  }
+  next() { this.goTo(this.current + 1); }
+  prev() { this.goTo(this.current - 1); }
+  updateDots() {
+    this.dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === this.current));
+  }
+  start() {
+    this.stop();
+    if (this.images.length > 1) this.timer = setInterval(() => this.next(), 4000);
+  }
+  stop() { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+}
+
+const carousels = {};
+['hero', 'intro', 'about'].forEach(slot => {
+  const ctrl = new CarouselCtrl(slot);
+  carousels[slot] = ctrl;
+  fetch(`/api/images/${slot}`).then(r => r.json()).then(imgs => ctrl.load(imgs)).catch(() => {});
+});
 
 // Scroll-triggered fade in
 const observer = new IntersectionObserver((entries) => {

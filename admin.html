@@ -20,7 +20,6 @@
   --mid-gray: #8a96a8;
   --dark-gray: #3d4a5c;
   --red: #dc3545;
-  --red-light: #fbe9eb;
   --radius: 8px;
   --radius-lg: 12px;
   --shadow: 0 4px 24px rgba(26,46,90,0.10);
@@ -29,9 +28,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Lato', sans-serif; background: var(--off-white); color: var(--dark-gray); }
 h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var(--navy); }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
-/* Header */
 .header { background: var(--navy-dark); color: white; padding: 18px 0; }
 .header .container { display: flex; align-items: center; justify-content: space-between; }
 .header h1 { font-size: 1.4rem; color: white; }
@@ -39,7 +37,6 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
 .header a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; transition: color var(--transition); }
 .header a:hover { color: white; }
 
-/* Login */
 .login-box {
   max-width: 400px; margin: 120px auto; background: white;
   border-radius: var(--radius-lg); padding: 48px 36px; box-shadow: var(--shadow);
@@ -54,6 +51,7 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
 }
 .login-box input:focus { border-color: var(--navy); }
 .login-box .error { color: var(--red); font-size: 0.85rem; margin-bottom: 12px; display: none; }
+
 .btn {
   font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.9rem;
   text-transform: uppercase; letter-spacing: 0.06em; padding: 12px 28px;
@@ -68,13 +66,11 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
 .btn-red:hover { background: #b02a37; }
 .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--dark-gray); }
 .btn-outline:hover { border-color: var(--navy); color: var(--navy); }
-.btn-sm { padding: 8px 16px; font-size: 0.8rem; }
+.btn-sm { padding: 8px 14px; font-size: 0.78rem; }
 
-/* Dashboard (hidden until login) */
 .dashboard { display: none; }
-.stats-bar {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0;
-}
+
+.stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
 .stat-card {
   background: white; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--border); text-align: center;
 }
@@ -92,30 +88,29 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
 }
 .jobs-table th {
   background: var(--navy); color: white; font-family: 'Barlow', sans-serif;
-  font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em;
-  padding: 14px 16px; text-align: left;
+  font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 12px 14px; text-align: left; white-space: nowrap;
 }
 .jobs-table td {
-  padding: 14px 16px; font-size: 0.88rem; border-bottom: 1px solid var(--border); vertical-align: middle;
+  padding: 12px 14px; font-size: 0.85rem; border-bottom: 1px solid var(--border); vertical-align: middle;
 }
 .jobs-table tr:last-child td { border-bottom: none; }
 .jobs-table tr:hover td { background: var(--off-white); }
 .tag {
   display: inline-flex; align-items: center; gap: 5px; font-family: 'Barlow', sans-serif;
-  font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 4px 10px; border-radius: 100px;
+  font-weight: 700; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 3px 9px; border-radius: 100px;
 }
 .tag-immediate { background: var(--green-pale); color: var(--green); }
 .tag-ongoing { background: #e8f0fe; color: #2a5298; }
 .tag-inactive { background: var(--light-gray); color: var(--mid-gray); }
 .actions { display: flex; gap: 6px; }
-.vacancy-badge {
-  font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.85rem;
-}
+.company-cell { font-weight: 600; color: var(--navy); }
+.title-cell { color: var(--dark-gray); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vacancy-badge { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.85rem; }
 .empty-state { text-align: center; padding: 48px 24px; color: var(--mid-gray); }
 .empty-state p { font-size: 0.95rem; }
 
-/* Modal */
 .modal-overlay {
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
   z-index: 1000; align-items: center; justify-content: center;
@@ -123,22 +118,33 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
 .modal-overlay.open { display: flex; }
 .modal {
   background: white; border-radius: var(--radius-lg); padding: 36px;
-  width: 100%; max-width: 480px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;
+  width: 100%; max-width: 620px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  max-height: 95vh; overflow-y: auto; position: relative;
 }
 .modal h3 { font-size: 1.2rem; margin-bottom: 6px; }
 .modal .sub { font-size: 0.88rem; color: var(--mid-gray); margin-bottom: 24px; }
-.form-group { margin-bottom: 16px; }
-.form-group label { display: block; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 0.8rem; color: var(--dark-gray); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-.form-group input, .form-group select {
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { margin-bottom: 14px; }
+.form-group label {
+  display: block; font-family: 'Barlow', sans-serif; font-weight: 600;
+  font-size: 0.78rem; color: var(--dark-gray); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 5px;
+}
+.form-group input, .form-group select, .form-group textarea {
   width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
-  border-radius: var(--radius); font-size: 0.92rem; outline: none; background: var(--off-white);
+  border-radius: var(--radius); font-size: 0.9rem; outline: none; background: var(--off-white);
   transition: border-color var(--transition);
 }
-.form-group input:focus, .form-group select:focus { border-color: var(--navy); background: white; }
-.form-actions { display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end; }
-.modal-close { position: absolute; top: 16px; right: 20px; font-size: 1.4rem; cursor: pointer; color: var(--mid-gray); background: none; border: none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--navy); background: white;
+}
+.form-group textarea { resize: vertical; min-height: 70px; }
+.form-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; }
+.modal-close {
+  position: absolute; top: 14px; right: 18px; font-size: 1.5rem;
+  cursor: pointer; color: var(--mid-gray); background: none; border: none; line-height: 1;
+}
 
-/* Loading / Toast */
 .toast {
   position: fixed; bottom: 28px; right: 28px; background: var(--navy-dark); color: white;
   padding: 14px 22px; border-radius: var(--radius); font-size: 0.9rem;
@@ -146,6 +152,34 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
 }
 .toast.show { display: block; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Image Management */
+.img-slots { display: grid; gap: 28px; }
+.img-slot { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.img-slot-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; background: var(--off-white); border-bottom: 1px solid var(--border); }
+.img-slot-header h3 { font-size: 1rem; }
+.img-slot-header .slot-desc { font-size: 0.8rem; color: var(--mid-gray); }
+.img-slot-body { padding: 20px 24px; }
+.img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+.img-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; position: relative; }
+.img-card img { width: 100%; height: 100px; object-fit: cover; display: block; }
+.img-card .img-name { padding: 8px 10px; font-size: 0.78rem; font-weight: 600; color: var(--dark-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: white; }
+.img-card .img-del {
+  position: absolute; top: 6px; right: 6px; width: 26px; height: 26px;
+  background: rgba(220,53,53,0.9); color: white; border: none; border-radius: 50%;
+  font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity var(--transition);
+}
+.img-card:hover .img-del { opacity: 1; }
+.img-empty { text-align: center; padding: 32px; color: var(--mid-gray); font-size: 0.9rem; }
+.img-empty svg { width: 40px; height: 40px; opacity: 0.3; margin-bottom: 8px; }
+
+@media (max-width: 768px) {
+  .form-row { grid-template-columns: 1fr; }
+  .jobs-table { font-size: 0.8rem; }
+  .jobs-table th, .jobs-table td { padding: 10px 8px; }
+  .title-cell { max-width: 120px; }
+}
 </style>
 </head>
 <body>
@@ -158,7 +192,6 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
 </div>
 
 <div class="container">
-  <!-- Login -->
   <div class="login-box" id="loginBox">
     <h2>Admin Login</h2>
     <p>Enter password to manage job listings</p>
@@ -167,7 +200,6 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
     <button class="btn btn-primary" onclick="login()">Login</button>
   </div>
 
-  <!-- Dashboard -->
   <div class="dashboard" id="dashboard">
     <div class="stats-bar">
       <div class="stat-card"><div class="num" id="totalJobs">0</div><div class="lbl">Total Jobs</div></div>
@@ -184,58 +216,127 @@ h1, h2, h3, h4 { font-family: 'Barlow', sans-serif; font-weight: 700; color: var
       <thead>
         <tr>
           <th>ID</th>
-          <th>Title</th>
-          <th>Type</th>
+          <th>Company</th>
+          <th>Job Title</th>
+          <th>Department</th>
           <th>Location</th>
-          <th>Employment</th>
-          <th>Vacancies</th>
+          <th>Type</th>
+          <th>Vac.</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody id="jobsBody"></tbody>
     </table>
+
+    <!-- Image Management -->
+    <hr style="border:none;border-top:2px solid var(--border);margin:40px 0 32px">
+    <div class="toolbar" style="margin-bottom:8px">
+      <h2>Manage Carousel Images</h2>
+    </div>
+    <p style="font-size:0.88rem;color:var(--mid-gray);margin-bottom:24px">Upload images for the homepage hero, homepage intro, and about page carousels. Allowed: JPG, PNG, GIF, WebP (max 10MB each).</p>
+    <div class="img-slots" id="imageSlots"></div>
   </div>
 </div>
 
-<!-- Add/Edit Modal -->
+<!-- Image upload modal -->
+<div class="modal-overlay" id="imageModal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeImageModal()">×</button>
+    <h3 id="imgModalTitle">Upload Image</h3>
+    <p class="sub" id="imgModalSub">Select an image to add to this carousel</p>
+    <input type="hidden" id="imgSlot">
+    <div class="form-group">
+      <label>Image Name</label>
+      <input type="text" id="imgName" placeholder="e.g. Cleanroom Team, Office Building">
+    </div>
+    <div class="form-group">
+      <label>Choose Image *</label>
+      <input type="file" id="imgFile" accept=".jpg,.jpeg,.png,.gif,.webp">
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-outline" onclick="closeImageModal()">Cancel</button>
+      <button class="btn btn-primary" id="imgUploadBtn" onclick="uploadImage()" style="width:auto">Upload</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="jobModal">
   <div class="modal" style="position:relative">
     <button class="modal-close" onclick="closeModal()">×</button>
     <h3 id="modalTitle">Add Job</h3>
     <p class="sub" id="modalSub">Fill in the details to add a new job listing</p>
     <input type="hidden" id="editId">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Job Type *</label>
+        <select id="jobType">
+          <option value="immediate">Immediate Joining</option>
+          <option value="ongoing">Ongoing</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Vacancies *</label>
+        <input type="number" id="jobVacancies" placeholder="e.g. 10" min="0">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Company *</label>
+      <input type="text" id="jobCompany" placeholder="e.g. GMP Workforce Solutions">
+    </div>
+
     <div class="form-group">
       <label>Job Title *</label>
       <input type="text" id="jobTitle" placeholder="e.g. Production Operator – OSD Manufacturing">
     </div>
-    <div class="form-group">
-      <label>Job Type *</label>
-      <select id="jobType">
-        <option value="immediate">Immediate Joining</option>
-        <option value="ongoing">Ongoing</option>
-      </select>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Department</label>
+        <input type="text" id="jobDepartment" placeholder="e.g. Manufacturing, QA, Warehouse">
+      </div>
+      <div class="form-group">
+        <label>Qualification</label>
+        <input type="text" id="jobQualification" placeholder="e.g. ITI / Diploma, B.Sc">
+      </div>
     </div>
-    <div class="form-group">
-      <label>Location *</label>
-      <input type="text" id="jobLocation" placeholder="e.g. Hyderabad, TS">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Experience Required</label>
+        <input type="text" id="jobExperience" placeholder="e.g. 1–3 Years, Fresher">
+      </div>
+      <div class="form-group">
+        <label>Salary Range</label>
+        <input type="text" id="jobSalary" placeholder="e.g. ₹15,000 – ₹20,000">
+      </div>
     </div>
-    <div class="form-group">
-      <label>Employment Type *</label>
-      <input type="text" id="jobEmploymentType" placeholder="e.g. Full-Time Contract">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Job Location *</label>
+        <input type="text" id="jobLocation" placeholder="e.g. Hyderabad, TS">
+      </div>
+      <div class="form-group">
+        <label>Employment Type *</label>
+        <input type="text" id="jobEmployment" placeholder="e.g. Full-Time Contract">
+      </div>
     </div>
+
     <div class="form-group">
-      <label>Number of Vacancies *</label>
-      <input type="number" id="jobVacancies" placeholder="e.g. 10" min="0">
+      <label>Roles and Responsibilities</label>
+      <textarea id="jobRoles" placeholder="Describe the key responsibilities, reporting structure, and daily tasks..." style="min-height:90px"></textarea>
     </div>
+
     <div class="form-actions">
       <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary" id="modalSaveBtn" onclick="saveJob()">Save Job</button>
+      <button class="btn btn-primary" id="modalSaveBtn" onclick="saveJob()" style="width:auto">Save Job</button>
     </div>
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
@@ -302,19 +403,20 @@ function updateStats() {
 function renderTable() {
   const tbody = document.getElementById('jobsBody');
   if (jobs.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><p>No jobs yet. Click "Add Job" to create one.</p></div></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><p>No jobs yet. Click "Add Job" to create one.</p></div></td></tr>';
     return;
   }
   tbody.innerHTML = jobs.map(j => {
     const active = j.active !== false;
     const typeClass = active ? (j.type === 'immediate' ? 'tag-immediate' : 'tag-ongoing') : 'tag-inactive';
-    const typeLabel = active ? (j.type === 'immediate' ? '● Immediate Joining' : '● Ongoing') : 'Inactive';
+    const typeLabel = active ? (j.type === 'immediate' ? '● Immediate' : '● Ongoing') : 'Inactive';
     return `<tr>
       <td style="font-weight:600;color:var(--mid-gray)">${j.id}</td>
-      <td style="font-weight:600;color:var(--navy)">${escHtml(j.title)}</td>
-      <td><span class="tag ${typeClass}">${typeLabel}</span></td>
+      <td class="company-cell">${escHtml(j.company)}</td>
+      <td class="title-cell" title="${escHtml(j.title)}">${escHtml(j.title)}</td>
+      <td>${escHtml(j.department || '-')}</td>
       <td>${escHtml(j.location)}</td>
-      <td>${escHtml(j.employmentType)}</td>
+      <td><span class="tag ${typeClass}">${typeLabel}</span></td>
       <td><span class="vacancy-badge">${j.vacancies}</span></td>
       <td>${active ? '<span style="color:var(--green);font-weight:600">Active</span>' : '<span style="color:var(--mid-gray)">Inactive</span>'}</td>
       <td><div class="actions">
@@ -326,6 +428,7 @@ function renderTable() {
 }
 
 function escHtml(s) {
+  if (s == null) return '';
   const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
 }
 
@@ -333,11 +436,17 @@ function openAddModal() {
   document.getElementById('modalTitle').textContent = 'Add Job';
   document.getElementById('modalSub').textContent = 'Fill in the details to add a new job listing';
   document.getElementById('editId').value = '';
-  document.getElementById('jobTitle').value = '';
   document.getElementById('jobType').value = 'immediate';
+  document.getElementById('jobCompany').value = '';
+  document.getElementById('jobTitle').value = '';
+  document.getElementById('jobDepartment').value = '';
+  document.getElementById('jobQualification').value = '';
+  document.getElementById('jobExperience').value = '';
+  document.getElementById('jobSalary').value = '';
   document.getElementById('jobLocation').value = '';
-  document.getElementById('jobEmploymentType').value = '';
+  document.getElementById('jobEmployment').value = '';
   document.getElementById('jobVacancies').value = '';
+  document.getElementById('jobRoles').value = '';
   document.getElementById('modalSaveBtn').textContent = 'Save Job';
   document.getElementById('jobModal').classList.add('open');
 }
@@ -348,11 +457,17 @@ function openEditModal(id) {
   document.getElementById('modalTitle').textContent = 'Edit Job';
   document.getElementById('modalSub').textContent = 'Update the job listing details';
   document.getElementById('editId').value = id;
-  document.getElementById('jobTitle').value = j.title;
   document.getElementById('jobType').value = j.type;
+  document.getElementById('jobCompany').value = j.company || '';
+  document.getElementById('jobTitle').value = j.title;
+  document.getElementById('jobDepartment').value = j.department || '';
+  document.getElementById('jobQualification').value = j.qualification || '';
+  document.getElementById('jobExperience').value = j.experience || '';
+  document.getElementById('jobSalary').value = j.salaryRange || '';
   document.getElementById('jobLocation').value = j.location;
-  document.getElementById('jobEmploymentType').value = j.employmentType;
+  document.getElementById('jobEmployment').value = j.employmentType;
   document.getElementById('jobVacancies').value = j.vacancies;
+  document.getElementById('jobRoles').value = j.roles || '';
   document.getElementById('modalSaveBtn').textContent = 'Update Job';
   document.getElementById('jobModal').classList.add('open');
 }
@@ -362,18 +477,24 @@ function closeModal() {
 }
 
 async function saveJob() {
-  const title = document.getElementById('jobTitle').value.trim();
-  const type = document.getElementById('jobType').value;
-  const location = document.getElementById('jobLocation').value.trim();
-  const employmentType = document.getElementById('jobEmploymentType').value.trim();
-  const vacancies = document.getElementById('jobVacancies').value;
   const editId = document.getElementById('editId').value;
+  const type = document.getElementById('jobType').value;
+  const company = document.getElementById('jobCompany').value.trim();
+  const title = document.getElementById('jobTitle').value.trim();
+  const department = document.getElementById('jobDepartment').value.trim();
+  const qualification = document.getElementById('jobQualification').value.trim();
+  const experience = document.getElementById('jobExperience').value.trim();
+  const salaryRange = document.getElementById('jobSalary').value.trim();
+  const location = document.getElementById('jobLocation').value.trim();
+  const employmentType = document.getElementById('jobEmployment').value.trim();
+  const vacancies = document.getElementById('jobVacancies').value;
+  const roles = document.getElementById('jobRoles').value.trim();
 
-  if (!title || !location || !employmentType || !vacancies) {
-    showToast('Please fill in all required fields'); return;
+  if (!company || !title || !location || !employmentType || !vacancies) {
+    showToast('Please fill in all required fields (marked with *)'); return;
   }
 
-  const body = { title, type, location, employmentType, vacancies: parseInt(vacancies) };
+  const body = { type, company, title, department, qualification, experience, salaryRange, location, employmentType, vacancies: parseInt(vacancies), roles };
 
   if (editId) {
     await api(`/api/jobs/${editId}`, { method: 'PUT', body: JSON.stringify(body) });
@@ -388,17 +509,120 @@ async function saveJob() {
 }
 
 async function deleteJob(id) {
-  if (!confirm('Delete this job listing permanently?')) return;
+  if (!confirm('Delete this job listing permanently?\nIDs will be re-sequenced automatically.')) return;
   await api(`/api/jobs/${id}`, { method: 'DELETE' });
-  showToast('Job deleted');
+  showToast('Job deleted · IDs re-sequenced');
   loadJobs();
 }
 
-// Auto-login check
-if (token) {
-  showDashboard();
-  loadJobs();
+// Image management
+const SLOTS = [
+  { id: 'hero', label: 'Homepage — Hero Section', desc: 'Main banner carousel (top of home page)' },
+  { id: 'intro', label: 'Homepage — Intro Section', desc: 'About us visual carousel (middle of home page)' },
+  { id: 'about', label: 'About Page — Intro Section', desc: 'Visual carousel on the About page' }
+];
+
+async function loadImages() {
+  const container = document.getElementById('imageSlots');
+  container.innerHTML = SLOTS.map(slot => `<div class="img-slot" id="slot-${slot.id}">
+    <div class="img-slot-header">
+      <div><h3>${slot.label}</h3><div class="slot-desc">${slot.desc}</div></div>
+      <button class="btn btn-green btn-sm" onclick="openImageUpload('${slot.id}')">+ Add Image</button>
+    </div>
+    <div class="img-slot-body"><div class="img-grid" id="imgGrid-${slot.id}">
+      <div class="img-empty"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><p>No images yet. Click "Add Image" to upload.</p></div>
+    </div></div>
+  </div>`).join('');
+  for (const slot of SLOTS) {
+    const res = await fetch(`/api/images/${slot.id}`);
+    const images = await res.json();
+    renderImages(slot.id, images);
+  }
 }
+
+function renderImages(slotId, images) {
+  const grid = document.getElementById(`imgGrid-${slotId}`);
+  if (!images.length) {
+    grid.innerHTML = '<div class="img-empty"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><p>No images yet. Click "Add Image" to upload.</p></div>';
+    return;
+  }
+  grid.innerHTML = images.map(img => `<div class="img-card">
+    <img src="${img.url}?t=${Date.now()}" alt="${escHtml(img.name)}" loading="lazy">
+    <div class="img-name">${escHtml(img.name)}</div>
+    <button class="img-del" onclick="deleteImage('${slotId}','${img.file}')" title="Delete">×</button>
+  </div>`).join('');
+}
+
+function openImageUpload(slotId) {
+  document.getElementById('imgSlot').value = slotId;
+  document.getElementById('imgName').value = '';
+  document.getElementById('imgFile').value = '';
+  document.getElementById('imgModalTitle').textContent = 'Upload Image — ' + SLOTS.find(s => s.id === slotId).label;
+  document.getElementById('imgModalSub').textContent = 'Select an image to add to this carousel';
+  document.getElementById('imgUploadBtn').textContent = 'Upload';
+  document.getElementById('imageModal').classList.add('open');
+}
+
+function closeImageModal() {
+  document.getElementById('imageModal').classList.remove('open');
+}
+
+async function uploadImage() {
+  const slot = document.getElementById('imgSlot').value;
+  const file = document.getElementById('imgFile').files[0];
+  const name = document.getElementById('imgName').value.trim() || 'Image';
+  if (!file) { showToast('Please select an image file'); return; }
+  const formData = new FormData();
+  formData.append('image', file, name + file.name.match(/\.[^.]+$/)[0]);
+  try {
+    const res = await fetch(`/api/images/${slot}`, {
+      method: 'POST',
+      headers: { 'Authorization': token },
+      body: formData
+    });
+    if (res.status === 401) { token = null; localStorage.removeItem('adminToken'); showLogin(); return; }
+    if (!res.ok) { const e = await res.json(); showToast(e.error || 'Upload failed'); return; }
+    showToast('Image uploaded successfully');
+    closeImageModal();
+    const imgRes = await fetch(`/api/images/${slot}`);
+    const images = await imgRes.json();
+    renderImages(slot, images);
+  } catch { showToast('Upload failed'); }
+}
+
+async function deleteImage(slot, file) {
+  if (!confirm('Delete this image permanently?')) return;
+  const res = await fetch(`/api/images/${slot}/${encodeURIComponent(file)}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': token }
+  });
+  if (res.status === 401) { token = null; localStorage.removeItem('adminToken'); showLogin(); return; }
+  if (!res.ok) { showToast('Delete failed'); return; }
+  showToast('Image deleted');
+  const imgRes = await fetch(`/api/images/${slot}`);
+  const images = await imgRes.json();
+  renderImages(slot, images);
+}
+
+// Override showDashboard to also load images
+const origShowDashboard = showDashboard;
+showDashboard = function() {
+  origShowDashboard();
+  loadImages();
+};
+
+async function init() {
+  if (!token) return;
+  const res = await fetch('/api/admin/verify', { headers: { 'Authorization': token } });
+  if (res.ok) {
+    showDashboard();
+    loadJobs();
+  } else {
+    token = null;
+    localStorage.removeItem('adminToken');
+  }
+}
+init();
 </script>
 </body>
 </html>
